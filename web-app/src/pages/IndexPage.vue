@@ -16,8 +16,8 @@
 
 <script setup>
   import { onMounted, reactive, ref } from "vue";
-  import { invoke } from '@tauri-apps/api/tauri';
-  import { readTextFile } from '@tauri-apps/api/fs';
+  // import { invoke } from '@tauri-apps/api/tauri';
+  // import { readTextFile } from '@tauri-apps/api/fs';
   import { Command } from '@tauri-apps/api/shell';
 
   async function startSidecar() {

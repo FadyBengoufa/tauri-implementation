@@ -13,14 +13,12 @@
   },
   "tauri": {
     "allowlist": {
-      "all": false,
       "app": {
         "all": false,
         "hide": false,
         "show": false
       },
       "shell": {
-        "all": false,
         "sidecar": true,
         "scope": [
           { "name": "binaries/my-sidecar", "sidecar": true }
@@ -69,7 +67,7 @@
       },
       "resources": [],
       "shortDescription": "",
-      "targets": "all",
+      "targets": ["appimage"],
       "windows": {
         "certificateThumbprint": null,
         "digestAlgorithm": "sha256",
@@ -88,7 +86,7 @@
         "height": 800,
         "resizable": true,
         "title": "pristimed",
-        "width": 1400
+        "width": 900
       }
     ]
   }
