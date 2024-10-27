@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const sqlite3 = require('sqlite3').verbose();
+const path = require('path');
 
 const app = express();
 app.use(cors({
@@ -15,14 +17,34 @@ app.use(function(req, res, next) {
 });
 app.use(express.json());
 
+// Initialize SQLite database
+const dbPath = path.resolve(__dirname, 'test_database.db'); // Use a relative path for local database
+const db = new sqlite3.Database(dbPath, (err) => {
+  if (err) {
+    console.error("Failed to connect to SQLite database", err.message);
+  } else {
+    console.log("Connected to SQLite database");
+    initializeDatabase();
+  }
+});
+
+// Create a table if it doesn’t already exist
+function initializeDatabase() {
+  db.run(`
+    CREATE TABLE IF NOT EXISTS people (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      surname TEXT NOT NULL
+    )
+  `);
+}
+
 app.listen(3000, () => {
   console.log('Listening on port 3000!');
 });
 
 app.get('/', (req, res) => {
-  const {param1} = req.query;
-
-  res.send('Hello World!<br>Param1 = ' + param1);
+  res.send('Hello from Tauri sidecar with SQLite!');
 });
 
 let nexPersonId = 3;
@@ -33,6 +55,13 @@ const people = [
 
 app.get('/people', (req, res) => {
   res.send(people);
+  // db.all("SELECT * FROM people", [], (err, rows) => {
+  //   if (err) {
+  //     res.status(500).json({ error: err.message });
+  //   } else {
+  //     res.json(rows);
+  //   }
+  // });
 });
 
 app.get('/people/:id', (req, res) => {
