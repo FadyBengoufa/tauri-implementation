@@ -1,0 +1,42 @@
+{
+  "name": "web-app",
+  "version": "0.0.1",
+  "description": "",
+  "productName": "Sobco KPIs",
+  "author": "Nadir <tellainadir@gmail.com>",
+  "private": true,
+  "scripts": {
+    "test": "echo \"No test specified\" && exit 0",
+    "dev": "quasar dev",
+    "build": "quasar build",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@electron/remote": "^2.1.2",
+    "@quasar/extras": "^1.16.4",
+    "@tauri-apps/plugin-shell": "^2.0.1",
+    "axios": "^1.7.7",
+    "electron-ipc-router": "^1.0.5",
+    "pinia": "^2.0.11",
+    "quasar": "^2.8.0",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7",
+    "vue": "^3.4.18",
+    "vue-router": "^4.0.12"
+  },
+  "devDependencies": {
+    "@quasar/app-vite": "^1.8.0",
+    "@tauri-apps/api": "^2.0.3",
+    "@tauri-apps/cli": "^2.0.3",
+    "autoprefixer": "^10.4.19",
+    "electron": "^33.0.1",
+    "pkg": "^5.8.1",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3"
+  },
+  "engines": {
+    "node": "^20 || ^18 || ^16",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  }
+}

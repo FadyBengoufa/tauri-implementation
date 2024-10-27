@@ -1,0 +1,41 @@
+// app global css in SCSS form
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;500;700&display=swap');
+
+.row.inline, .column.inline, .flex.inline {
+  display: inline-flex !important;
+}
+
+.q-option-group > div {
+  border-bottom: 1px solid lightgray;
+}
+
+
+body{
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+
+.q-table:hover .q-tr:hover {
+  background-color: #ECFFF1;
+  color: black
+}
+
+.q-table:hover .q-tr:focus {
+  background-color: #475369;
+  color: black
+}
+
+
+.q-hoverable:hover > .q-focus-helper {
+  opacity: 0 !important;
+}
+
+
+
+
