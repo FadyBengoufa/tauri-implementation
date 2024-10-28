@@ -13,31 +13,17 @@
   },
   "tauri": {
     "allowlist": {
-      "app": {
-        "all": false,
-        "hide": false,
-        "show": false
-      },
+      "all": true,
       "shell": {
         "sidecar": true,
         "scope": [
-          { "name": "binaries/my-sidecar", "sidecar": true }
-        ],
-        "execute": false
-      },
-      "fs": {
-        "all": false,
-        "scope": {
-          "allow": ["$APP/*"],
-          "deny": ["/**"]
-        },
-        "writeFile": true
-      },
-     "http": {
-      "all": false,
-      "request": false,
-      "scope": []
-     }
+          { 
+            "name": "binaries/my-sidecar", 
+            "sidecar": true,
+            "args": false
+          }
+        ]
+      }
     },
     "bundle": {
       "active": true,

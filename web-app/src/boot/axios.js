@@ -9,7 +9,7 @@ const baseURL = process.env.DEV ? process.env.BACKEND_API : "https://api.kpi-ser
 const isElectron = window.electronAPI !== undefined;
 
 const api = axios.create({
-  baseURL: `http://localhost:3000`,
+  baseURL: `http://localhost:4000`,
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',

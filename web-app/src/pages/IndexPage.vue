@@ -16,21 +16,19 @@
 
 <script setup>
   import { onMounted, reactive, ref } from "vue";
-  // import { invoke } from '@tauri-apps/api/tauri';
-  // import { readTextFile } from '@tauri-apps/api/fs';
-  import { Command } from '@tauri-apps/api/shell';
+  import { invoke } from '@tauri-apps/api/tauri';
+  import { readTextFile } from '@tauri-apps/api/fs';
+  // import { Command } from '@tauri-apps/api/shell';
 
-  async function startSidecar() {
-    try {
-      const command = Command.sidecar('binaries/my-sidecar'); // Adjust path if necessary
-      await command.spawn();
-      console.log('Sidecar started');
-    } catch (error) {
-      console.error('Error starting sidecar:', error);
-    }
-  }
-
-  startSidecar();
+  // async function startSidecar() {
+  //   try {
+  //     const command = Command.sidecar('binaries/my-sidecar'); // Adjust path if necessary
+  //     await command.spawn();
+  //     console.log('Sidecar started');
+  //   } catch (error) {
+  //     console.error('Error starting sidecar:', error);
+  //   }
+  // }
 
   defineOptions({
     name: 'IndexPage'
@@ -39,15 +37,17 @@
   const message = ref('')
 
   async function pingSidecar() {
+    console.log('Ping sidecar...');
+    
     try {
       // Replace this with your sidecar call
-      const res = await fetch("http://localhost:3000/people", {
+      const res = await fetch("http://localhost:4000/people", {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         },
       });
-
+      // console.log("res", res);
       if (!res.ok) {
         throw new Error('Error fetching people');
       }
@@ -59,6 +59,11 @@
       console.error('Error:', error);
     }
   }
+
+
+  onMounted(() => {
+    // startSidecar();
+  })
 
   // async function runSecurityAudit() {
   //   try {
@@ -159,10 +164,5 @@
 
   //   }
   // };
-
-  onMounted(() => {
-    // console.log('isElectron', isElectron);
-    // loadUsers()
-  })
 
 </script>
