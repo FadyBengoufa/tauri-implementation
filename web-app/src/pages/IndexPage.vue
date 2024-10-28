@@ -38,10 +38,10 @@
 
   async function pingSidecar() {
     console.log('Ping sidecar...');
-    
+
     try {
       // Replace this with your sidecar call
-      const res = await fetch("http://localhost:4000/people", {
+      const res = await fetch("http://localhost:4020/people", {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -121,7 +121,7 @@
   //   // `invoke` returns a Promise
   //   .then((response) => console.log(response))
 
-  // FIXME ELECTRON COMMUNICATION THIS WAS A TEST 
+  // FIXME ELECTRON COMMUNICATION THIS WAS A TEST
   // const form = reactive({
   //   name: '',
   //   email: '',

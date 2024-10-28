@@ -23,6 +23,10 @@
             "args": false
           }
         ]
+      },
+      "http": {
+        "all": true,
+        "request": true
       }
     },
     "bundle": {
@@ -61,7 +65,7 @@
       }
     },
     "security": {
-       "csp": "default-src 'self'; script-src 'self'"
+       "csp": "default-src 'self'; connect-src 'self' http://localhost:4020/; script-src 'self'"
     },
     "updater": {
       "active": false
