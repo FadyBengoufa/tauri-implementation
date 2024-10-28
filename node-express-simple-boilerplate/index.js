@@ -12,7 +12,7 @@ const app = express();
 // );
 const corsOptions = {
   origin: ['http://localhost:9000', 'tauri://localhost', '*'], // Update origins
-  methods: 'GET,PUT,POST,DELETE,OPTIONS',
+  methods: ['GET'],
   allowedHeaders: ['Content-Type', 'Authorization', '*'],
 };
 

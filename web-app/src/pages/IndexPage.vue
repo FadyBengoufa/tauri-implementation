@@ -6,7 +6,7 @@
     <!-- <q-btn @click="com()">TEST</q-btn> -->
 
     <h1>Execute Sidecar</h1>
-    <q-btn @click="pingSidecar">Run Sidecar</q-btn>
+    <q-btn @click="apiRequest">Run Sidecar</q-btn>
     <!-- <q-btn @click="runSecurityAudit">Run Audit</q-btn>
     <q-btn @click="runSecurity">Run Security Audit</q-btn>
     <q-btn @click="runSecurityDB">Database Access</q-btn> -->
@@ -36,29 +36,57 @@
 
   const message = ref('')
 
-  async function pingSidecar() {
-    console.log('Ping sidecar...');
+  import { Body, fetch as fetchTauri, getClient, ResponseType } from "@tauri-apps/api/http"
 
-    try {
-      // Replace this with your sidecar call
-      const res = await fetch("http://localhost:4020/people", {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      // console.log("res", res);
-      if (!res.ok) {
-        throw new Error('Error fetching people');
-      }
+  async function apiRequest(data) {
+    // let body = Body.form(data);
+    // let res = await fetchTauri("http://localhost:4020/people", {
+    //   method: "GET",
+    //   // body: body,
+    //   // timeout: 30, //seconds
+    //   // responseType: ResponseType.JSON,
+    //   // headers: {key: 'val'} // if needed
+    // });
 
-      const peopleList = await res.json();
-      console.log("Sidecar Response:", peopleList);
-      message.value = peopleList?.[0]?.name
-    } catch (error) {
-      console.error('Error:', error);
+    const client = await getClient();
+    const res = await client.get('http://localhost:4020/people', {
+      timeout: 30,
+      // the expected response type
+      responseType: ResponseType.JSON
+    });
+
+    if (!res.ok) {
+      throw new Error('Error fetching people');
     }
+
+    const peopleList = await res.data
+    message.value = peopleList?.[0]?.name
+    console.log("Sidecar Response:", res);
   }
+
+  // async function pingSidecar() {
+  //   console.log('Ping sidecar...');
+
+  //   try {
+  //     // Replace this with your sidecar call
+  //     const res = await fetch("http://localhost:4020/people", {
+  //       method: 'GET',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //     });
+  //     // console.log("res", res);
+  //     if (!res.ok) {
+  //       throw new Error('Error fetching people');
+  //     }
+
+  //     const peopleList = await res.json();
+  //     console.log("Sidecar Response:", peopleList);
+  //     message.value = peopleList?.[0]?.name
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //   }
+  // }
 
 
   onMounted(() => {
